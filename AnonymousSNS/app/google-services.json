@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "767466052613",
+    "firebase_url": "https://anonymoussns-eaacf.firebaseio.com",
+    "project_id": "anonymoussns-eaacf",
+    "storage_bucket": "anonymoussns-eaacf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:767466052613:android:63d0d9050cda9e4d55106c",
+        "android_client_info": {
+          "package_name": "com.example.anonymoussns"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "767466052613-dap30fou0ft95h1rve4tpo7u1mnbi8lg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrfuv5GiIBO71hKv7vYZT7u90bA5KKrFU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "767466052613-dap30fou0ft95h1rve4tpo7u1mnbi8lg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
