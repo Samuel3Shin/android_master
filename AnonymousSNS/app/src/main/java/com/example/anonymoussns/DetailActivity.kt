@@ -5,9 +5,11 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -148,5 +150,13 @@ class DetailActivity : AppCompatActivity() {
         }
 
     }
+
+    fun showPopup(v: View?) {
+        val popup = PopupMenu(this, v)
+        val inflater: MenuInflater = popup.getMenuInflater()
+        inflater.inflate(R.menu.mymenu, popup.getMenu())
+        popup.show()
+    }
+
 
 }

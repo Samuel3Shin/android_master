@@ -10,4 +10,5 @@ class Post {
     var commentCount = 0
 
 
+
 }
