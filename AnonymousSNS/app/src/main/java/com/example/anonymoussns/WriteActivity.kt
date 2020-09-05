@@ -4,6 +4,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
+import android.text.Editable
 import android.text.TextUtils
 import android.util.Log
 import android.view.LayoutInflater
@@ -50,14 +51,41 @@ class WriteActivity : AppCompatActivity() {
             postId = intent.getStringExtra("postId")!!
         }
 
-        supportActionBar?.title = if(mode == "post") "글쓰기" else "댓글쓰기"
+        when(mode) {
+            "post" -> {
+                supportActionBar?.title = "글쓰기"
+            }
+            "editPost" -> {
+                supportActionBar?.title = "글 수정"
+            }
+            else -> {
+                supportActionBar?.title = "댓글 쓰기"
+            }
+        }
 
         val layoutManager = LinearLayoutManager(this@WriteActivity)
 
-        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
 
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = MyAdapter()
+
+        if(mode=="editPost") {
+
+            val postRef = FirebaseDatabase.getInstance().getReference("/Posts/$postId")
+
+            postRef.addListenerForSingleValueEvent(object: ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val text = snapshot.child("message").getValue()
+                    input.setText(text.toString())
+                }
+            })
+        }
+
 
         sendButton.setOnClickListener {
             if(TextUtils.isEmpty(input.text)) {
@@ -75,6 +103,11 @@ class WriteActivity : AppCompatActivity() {
                 newRef.setValue(post)
                 Toast.makeText(applicationContext, "공유 되었습니다.", Toast.LENGTH_SHORT).show()
                 finish()
+            } else if (mode=="editPost") {
+                val postRef = FirebaseDatabase.getInstance().getReference("/Posts/$postId")
+                postRef.child("message").setValue(input.text.toString())
+                finish()
+
             } else {
                 val comment = Comment()
                 val newRef = FirebaseDatabase.getInstance().getReference("Comments/$postId").push()
