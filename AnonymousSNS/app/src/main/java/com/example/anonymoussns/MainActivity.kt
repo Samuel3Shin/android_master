@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.recyclerView
+import kotlinx.android.synthetic.main.activity_write.*
 import kotlinx.android.synthetic.main.card_post.view.*
 import org.joda.time.DateTime
 import org.joda.time.Days
@@ -138,11 +140,13 @@ class MainActivity : AppCompatActivity() {
         val contentsText: TextView = itemView.contentsText
         val timeTextView: TextView = itemView.timeTextView
         val commentCountText: TextView = itemView.commentCountText
+        val hitsCountText: TextView = itemView.hitsCountText
     }
 
     inner class MyAdapter: RecyclerView.Adapter<MyViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-            return MyViewHolder(LayoutInflater.from(this@MainActivity).inflate(R.layout.card_post, parent, false))
+            return MyViewHolder(LayoutInflater.from(this@MainActivity)
+                .inflate(R.layout.card_post, parent, false))
         }
 
         override fun getItemCount(): Int {
@@ -153,39 +157,35 @@ class MainActivity : AppCompatActivity() {
             val post = posts[position]
             Picasso.get().load(Uri.parse(post.bgUri)).fit().centerCrop().into(holder.imageView)
             holder.contentsText.text = post.message
-            holder.timeTextView.text = getDiffTimeText(post.writeTime as Long)
+            holder.timeTextView.text = Utils.getDiffTimeText(post.writeTime as Long)
             holder.commentCountText.text = post.commentCount.toString()
+            holder.hitsCountText.text = post.hitsCount.toString()
 
             holder.itemView.setOnClickListener {
                 val intent = Intent(this@MainActivity, DetailActivity::class.java)
                 intent.putExtra("postId", post.postId)
                 startActivity(intent)
+
+                // hits 개수 늘려주기 추가
+                val id = post.postId
+                val postRef = FirebaseDatabase.getInstance().getReference("/Posts/$id")
+
+                postRef.addListenerForSingleValueEvent(object: ValueEventListener {
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
+                    }
+
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        var hitsNum = snapshot.child("hitsCount").value as Long
+                        Log.d("tkandpf", hitsNum.toString())
+                        postRef.child("hitsCount").setValue(hitsNum + 1)
+                    }
+                })
             }
+
         }
     }
 
-    fun getDiffTimeText(targetTime: Long): String {
-        val curDateTime = DateTime()
-        val targetDateTime = DateTime().withMillis(targetTime)
 
-        val diffDay = Days.daysBetween(curDateTime, targetDateTime).days
-        val diffHours = Hours.hoursBetween(targetDateTime, curDateTime).hours
-        val diffMinutes = Minutes.minutesBetween(targetDateTime, curDateTime).minutes
-
-        if(diffDay == 0) {
-            if(diffHours == 0 && diffMinutes == 0) {
-                return "방금 전"
-            }
-
-            return if(diffHours > 0) {
-                "" + diffHours + "시간 전"
-            } else {
-                "" + diffMinutes + "분 전"
-            }
-        } else {
-            val format = SimpleDateFormat("yyyy년 MM월 dd일 HH:mm")
-            return format.format(Date(targetTime))
-        }
-    }
 
 }

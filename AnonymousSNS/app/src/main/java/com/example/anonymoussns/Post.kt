@@ -9,8 +9,8 @@ class Post {
     var writeTime:Any = Any()
     var bgUri = ""
     var commentCount = 0
-    var hits = 0
-    var likes = 0
+    var hitsCount = 0
+    var likesCount = 0
     var nickName = "익명의 닉네임"
 
 

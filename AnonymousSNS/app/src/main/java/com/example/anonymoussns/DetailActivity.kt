@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_write.*
+import kotlinx.android.synthetic.main.gupsik_comment.view.*
 import kotlinx.android.synthetic.main.gupsik_detail.*
 
 
@@ -112,6 +113,28 @@ class DetailActivity : AppCompatActivity() {
 
         })
 
+        back_button.setOnClickListener {
+            finish()
+        }
+
+        // hitsCountText 갱신해준다.
+        val postRef = FirebaseDatabase.getInstance().getReference("/Posts/$postId")
+
+        postRef.addListenerForSingleValueEvent(object: ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val hitsCount = snapshot.child("hitsCount").getValue()
+                hitsCountText.setText(hitsCount.toString())
+
+                val writeTime = snapshot.child("writeTime").getValue()
+                val date = Utils.getDiffTimeText(writeTime as Long)
+                dateTextView.setText(date)
+            }
+        })
+
         register_button.setOnClickListener {
             val comment = Comment()
             val newRef = FirebaseDatabase.getInstance().getReference("Comments/$postId").push()
@@ -141,7 +164,6 @@ class DetailActivity : AppCompatActivity() {
 
         }
 
-
     }
 
     fun getMyId(): String {
@@ -150,6 +172,8 @@ class DetailActivity : AppCompatActivity() {
 
     inner class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val commentText = itemView.findViewById<TextView>(R.id.comment_text)
+        val commentWriteTime = itemView.dateTextView
+        val commentNickname = itemView.nickname
     }
 
     inner class MyAdapter: RecyclerView.Adapter<MyViewHolder>() {
@@ -163,6 +187,8 @@ class DetailActivity : AppCompatActivity() {
             val comment = commentList[position]
             comment?.let {
                 holder.commentText.text = comment.message
+                holder.commentWriteTime.text = Utils.getDiffTimeText(comment.writeTime as Long)
+//                holder.commentNickname.text = comment.nickname
             }
         }
 
@@ -172,6 +198,7 @@ class DetailActivity : AppCompatActivity() {
 
     }
 
+    // 점점점 메뉴 옵션 넣은부분. 수정, 삭제 가능.
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.detail, menu)
         return true
@@ -196,7 +223,10 @@ class DetailActivity : AppCompatActivity() {
                 return true
             }
         }
+
         return super.onOptionsItemSelected(item)
     }
 
 }
+
+
