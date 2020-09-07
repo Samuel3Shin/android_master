@@ -48,15 +48,6 @@
         app:layout_constraintStart_toStartOf="@+id/writeBackground"
         app:layout_constraintTop_toTopOf="@+id/writeBackground" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/input"
-        app:layout_constraintStart_toStartOf="@+id/input"
-        app:layout_constraintTop_toTopOf="@+id/guideline1" />
-
     <Button
         android:id="@+id/sendButton"
         android:layout_width="0dp"

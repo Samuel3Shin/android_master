@@ -18,21 +18,18 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.recyclerView
 import kotlinx.android.synthetic.main.activity_write.*
-import kotlinx.android.synthetic.main.card_post.view.*
+import kotlinx.android.synthetic.main.gupsik_post.view.*
 import org.joda.time.DateTime
 import org.joda.time.Days
 import org.joda.time.Hours
 import org.joda.time.Hours.hoursBetween
 import org.joda.time.Minutes
+import org.w3c.dom.Text
 import java.text.SimpleDateFormat
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
     val posts: MutableList<Post> = mutableListOf()
-
-    val TAG = "MainActivity";
-
-    val ref = FirebaseDatabase.getInstance().getReference("test")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -136,17 +133,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imageView: ImageView = itemView.imageView
         val contentsText: TextView = itemView.contentsText
         val timeTextView: TextView = itemView.timeTextView
         val commentCountText: TextView = itemView.commentCountText
         val hitsCountText: TextView = itemView.hitsCountText
+        val titleText: TextView = itemView.titleTextView
+        val nicknameText: TextView = itemView.nicknameTextView
     }
 
     inner class MyAdapter: RecyclerView.Adapter<MyViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
             return MyViewHolder(LayoutInflater.from(this@MainActivity)
-                .inflate(R.layout.card_post, parent, false))
+                .inflate(R.layout.gupsik_post, parent, false))
         }
 
         override fun getItemCount(): Int {
@@ -155,11 +153,13 @@ class MainActivity : AppCompatActivity() {
 
         override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
             val post = posts[position]
-            Picasso.get().load(Uri.parse(post.bgUri)).fit().centerCrop().into(holder.imageView)
             holder.contentsText.text = post.message
             holder.timeTextView.text = Utils.getDiffTimeText(post.writeTime as Long)
             holder.commentCountText.text = post.commentCount.toString()
             holder.hitsCountText.text = post.hitsCount.toString()
+            holder.titleText.text = post.title
+            holder.nicknameText.text = post.nickName
+
 
             holder.itemView.setOnClickListener {
                 val intent = Intent(this@MainActivity, DetailActivity::class.java)
@@ -185,7 +185,5 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
-
-
 
 }

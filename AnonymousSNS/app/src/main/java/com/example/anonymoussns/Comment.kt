@@ -7,5 +7,4 @@ class Comment {
     var nickname = ""
     var message = ""
     var writeTime:Any = Any()
-    var bgUri = ""
 }

@@ -29,18 +29,6 @@ class WriteActivity : AppCompatActivity() {
     var mode = "post"
     var postId = ""
 
-    val bgList = mutableListOf(
-        "android.resource://com.example.anonymoussns/drawable/default_bg"
-        , "android.resource://com.example.anonymoussns/drawable/bg2"
-        , "android.resource://com.example.anonymoussns/drawable/bg3"
-        , "android.resource://com.example.anonymoussns/drawable/bg4"
-        , "android.resource://com.example.anonymoussns/drawable/bg5"
-        , "android.resource://com.example.anonymoussns/drawable/bg6"
-        , "android.resource://com.example.anonymoussns/drawable/bg7"
-        , "android.resource://com.example.anonymoussns/drawable/bg8"
-        , "android.resource://com.example.anonymoussns/drawable/bg9"
-    )
-
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -63,12 +51,6 @@ class WriteActivity : AppCompatActivity() {
             }
         }
 
-        val layoutManager = LinearLayoutManager(this@WriteActivity)
-
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
-
-        recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = MyAdapter()
 
         if(mode=="editPost") {
 
@@ -96,7 +78,6 @@ class WriteActivity : AppCompatActivity() {
                 val post = Post()
                 val newRef = FirebaseDatabase.getInstance().getReference("Posts").push()
                 post.writeTime = ServerValue.TIMESTAMP
-                post.bgUri = bgList[currentBgPosition]
                 post.message = input.text.toString()
                 post.writerId = getMyId()
                 post.postId = newRef.key.toString()
@@ -113,7 +94,6 @@ class WriteActivity : AppCompatActivity() {
                 val newRef = FirebaseDatabase.getInstance().getReference("Comments/$postId").push()
 
                 comment.writeTime = ServerValue.TIMESTAMP
-                comment.bgUri = bgList[currentBgPosition]
                 comment.message = input.text.toString()
                 comment.writerId = getMyId()
                 comment.commentId = newRef.key.toString()
@@ -148,36 +128,4 @@ class WriteActivity : AppCompatActivity() {
         return Settings.Secure.getString(this.contentResolver, Settings.Secure.ANDROID_ID)
     }
 
-    inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imageView = itemView.imageView
-    }
-
-    inner class MyAdapter : RecyclerView.Adapter<MyViewHolder>() {
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-            return MyViewHolder(LayoutInflater.from(this@WriteActivity).inflate(R.layout.card_background, parent, false))
-        }
-
-        override fun getItemCount(): Int {
-            return bgList.size
-        }
-
-        override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-            Picasso.get()
-                .load(Uri.parse(bgList[position]))
-                .fit()
-                .centerCrop()
-                .into(holder.imageView)
-
-            holder.itemView.setOnClickListener {
-                currentBgPosition = position
-
-                Picasso.get()
-                    .load(Uri.parse(bgList[position]))
-                    .fit()
-                    .centerCrop()
-                    .into(writeBackground)
-            }
-        }
-
-    }
 }

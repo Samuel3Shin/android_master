@@ -1,20 +1,20 @@
 package com.example.anonymoussns
 
+import android.content.Context
 import android.content.Intent
-import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
 import android.view.*
-import android.widget.ImageView
-import android.widget.PopupMenu
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_write.*
 import kotlinx.android.synthetic.main.gupsik_comment.view.*
 import kotlinx.android.synthetic.main.gupsik_detail.*
 
@@ -33,6 +33,9 @@ class DetailActivity : AppCompatActivity() {
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         recycler_view.layoutManager = layoutManager
         recycler_view.adapter = MyAdapter()
+        recycler_view.deleteButton.setOnClickListener {
+            Toast(this, "삭제 버튼 눌렀찌!????")
+        }
 
         FirebaseDatabase.getInstance().getReference("/Posts/$postId")
             .addValueEventListener(object: ValueEventListener {
@@ -43,7 +46,6 @@ class DetailActivity : AppCompatActivity() {
                     snapshot?.let {
                         val post = it.getValue(Post::class.java)
                         post?.let {
-                            Picasso.get().load(it.bgUri)
                             contents.text = post.message
                         }
                     }
@@ -162,6 +164,11 @@ class DetailActivity : AppCompatActivity() {
                 }
             })
 
+            // 댓글단 거 다시 초기화 & 키보드 아래로 내리기
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(comments.windowToken, 0)
+            comments.setText("")
+
         }
 
     }
@@ -174,9 +181,13 @@ class DetailActivity : AppCompatActivity() {
         val commentText = itemView.findViewById<TextView>(R.id.comment_text)
         val commentWriteTime = itemView.dateTextView
         val commentNickname = itemView.nickname
+        val deleteButton = itemView.deleteButton
     }
 
     inner class MyAdapter: RecyclerView.Adapter<MyViewHolder>() {
+
+
+
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
             return MyViewHolder(LayoutInflater.from(this@DetailActivity)
                 .inflate(R.layout.gupsik_comment, parent, false))
@@ -188,6 +199,7 @@ class DetailActivity : AppCompatActivity() {
             comment?.let {
                 holder.commentText.text = comment.message
                 holder.commentWriteTime.text = Utils.getDiffTimeText(comment.writeTime as Long)
+                // 여기에 익명1, 익명2을 id값에 따라 mapping해주는 것이 필요함.
 //                holder.commentNickname.text = comment.nickname
             }
         }

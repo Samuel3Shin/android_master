@@ -7,7 +7,6 @@ class Post {
     var title = ""
     var message = ""
     var writeTime:Any = Any()
-    var bgUri = ""
     var commentCount = 0
     var hitsCount = 0
     var likesCount = 0
