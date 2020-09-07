@@ -33,9 +33,7 @@ class DetailActivity : AppCompatActivity() {
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         recycler_view.layoutManager = layoutManager
         recycler_view.adapter = MyAdapter()
-        recycler_view.deleteButton.setOnClickListener {
-            Toast(this, "삭제 버튼 눌렀찌!????")
-        }
+
 
         FirebaseDatabase.getInstance().getReference("/Posts/$postId")
             .addValueEventListener(object: ValueEventListener {
@@ -202,6 +200,31 @@ class DetailActivity : AppCompatActivity() {
                 // 여기에 익명1, 익명2을 id값에 따라 mapping해주는 것이 필요함.
 //                holder.commentNickname.text = comment.nickname
             }
+
+            holder.deleteButton.setOnClickListener { v ->
+                Log.d("tkandpf", "삭제 버튼 눌렀다!")
+
+                // comment 불러서 삭제한다.
+                val commentId = comment.commentId
+                val commentRef = FirebaseDatabase.getInstance().getReference("/Comments/$postId/$commentId")
+                commentRef.removeValue()
+
+                val postRef = FirebaseDatabase.getInstance().getReference("/Posts/$postId")
+
+                // post의 댓글 개수 불러와서 거기다가 1을 빼준다.
+                postRef.addListenerForSingleValueEvent(object: ValueEventListener {
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
+                    }
+
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        var commentNum = snapshot.child("commentCount").value as Long
+                        postRef.child("commentCount").setValue(commentNum - 1)
+                        Log.d("tkandpf", commentNum.toString())
+                    }
+                })
+
+            }
         }
 
         override fun getItemCount(): Int {
@@ -240,5 +263,4 @@ class DetailActivity : AppCompatActivity() {
     }
 
 }
-
 
