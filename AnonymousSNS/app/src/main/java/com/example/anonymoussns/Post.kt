@@ -12,5 +12,4 @@ class Post {
     var likesCount = 0
     var nickName = "익명의 닉네임"
 
-
 }

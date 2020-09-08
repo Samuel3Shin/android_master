@@ -68,7 +68,6 @@ class WriteActivity : AppCompatActivity() {
             })
         }
 
-
         sendButton.setOnClickListener {
             if(TextUtils.isEmpty(input.text)) {
                 Toast.makeText(applicationContext, "메시지를 입력하세요.", Toast.LENGTH_SHORT).show()

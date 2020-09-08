@@ -139,6 +139,7 @@ class MainActivity : AppCompatActivity() {
         val hitsCountText: TextView = itemView.hitsCountText
         val titleText: TextView = itemView.titleTextView
         val nicknameText: TextView = itemView.nicknameTextView
+        val likesCountText: TextView = itemView.likesCountText
     }
 
     inner class MyAdapter: RecyclerView.Adapter<MyViewHolder>() {
@@ -159,6 +160,7 @@ class MainActivity : AppCompatActivity() {
             holder.hitsCountText.text = post.hitsCount.toString()
             holder.titleText.text = post.title
             holder.nicknameText.text = post.nickName
+            holder.likesCountText.text = post.likesCount.toString()
 
 
             holder.itemView.setOnClickListener {

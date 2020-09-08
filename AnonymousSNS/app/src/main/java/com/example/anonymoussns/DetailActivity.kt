@@ -169,6 +169,24 @@ class DetailActivity : AppCompatActivity() {
 
         }
 
+        likeButton.setOnClickListener {
+            // post의 좋아요 개수 불러와서 거기다가 1을 더해준다.
+            val postRef = FirebaseDatabase.getInstance().getReference("/Posts/$postId")
+
+            postRef.addListenerForSingleValueEvent(object: ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    var commentNum = snapshot.child("likesCount").value as Long
+                    postRef.child("likesCount").setValue(commentNum + 1)
+                    Log.d("tkandpf", commentNum.toString())
+                }
+            })
+
+        }
+
     }
 
     fun getMyId(): String {
@@ -179,11 +197,10 @@ class DetailActivity : AppCompatActivity() {
         val commentText = itemView.findViewById<TextView>(R.id.comment_text)
         val commentWriteTime = itemView.dateTextView
         val commentNickname = itemView.nickname
-        val deleteButton = itemView.deleteButton
+        val deleteTextVew = itemView.deleteTextView
     }
 
     inner class MyAdapter: RecyclerView.Adapter<MyViewHolder>() {
-
 
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -201,10 +218,7 @@ class DetailActivity : AppCompatActivity() {
 //                holder.commentNickname.text = comment.nickname
             }
 
-            holder.deleteButton.setOnClickListener { v ->
-                Log.d("tkandpf", "삭제 버튼 눌렀다!")
-
-                // comment 불러서 삭제한다.
+            holder.deleteTextVew.setOnClickListener {
                 val commentId = comment.commentId
                 val commentRef = FirebaseDatabase.getInstance().getReference("/Comments/$postId/$commentId")
                 commentRef.removeValue()
@@ -223,8 +237,9 @@ class DetailActivity : AppCompatActivity() {
                         Log.d("tkandpf", commentNum.toString())
                     }
                 })
-
             }
+
+
         }
 
         override fun getItemCount(): Int {
