@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity() {
         myLocationButton.setOnClickListener { onMyLocationButtonClick() }
     }
 
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -327,4 +328,4 @@ class MainActivity : AppCompatActivity() {
         itemMap.put(toilet, item)
 
     }
-};
+}

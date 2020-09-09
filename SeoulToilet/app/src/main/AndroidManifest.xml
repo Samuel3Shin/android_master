@@ -18,7 +18,8 @@
         android:theme="@style/AppTheme">
 
         <!-- 구글 클라우드 플랫폼에서 발급받은 API 키를 여기에 -->
-        <meta-data android:name="com.google.android.geo.API_KEY"
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBvOTFO1NyA4L8x6g-MlcxCF41kM2CQyDU" />
 
         <!-- 구글 플레이 서비스 버전을 적는 곳으로 그대로 타이핑 -->
