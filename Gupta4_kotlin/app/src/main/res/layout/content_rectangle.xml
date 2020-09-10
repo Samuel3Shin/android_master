@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <View
+        android:id="@+id/grey_line_at_the_left_of_rectangle"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:background="#958492"
+        app:layout_constraintBottom_toBottomOf="@+id/pink_line_at_the_bottom_of_rectangle"
+        app:layout_constraintEnd_toStartOf="@+id/black_line_at_the_left_of_rectangle"
+        app:layout_constraintTop_toTopOf="@+id/grey_line_at_the_top_of_rectangle" />
+
+    <View
+        android:id="@+id/black_line_at_the_left_of_rectangle"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toBottomOf="@+id/myRectangleView"
+        app:layout_constraintEnd_toStartOf="@+id/myRectangleView"
+        app:layout_constraintTop_toTopOf="@+id/myRectangleView" />
+
+    <View
+        android:id="@+id/grey_line_at_the_top_of_rectangle"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#958492"
+        app:layout_constraintBottom_toTopOf="@+id/black_line_at_the_top_of_rectangle"
+        app:layout_constraintEnd_toEndOf="@+id/pink_line_at_the_right_of_rectangle"
+        app:layout_constraintStart_toStartOf="@+id/black_line_at_the_left_of_rectangle" />
+
+    <View
+        android:id="@+id/black_line_at_the_top_of_rectangle"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/myRectangleView"
+        app:layout_constraintEnd_toEndOf="@+id/myRectangleView"
+        app:layout_constraintStart_toStartOf="@+id/black_line_at_the_left_of_rectangle" />
+
+    <View
+        android:id="@+id/pink_line_at_the_bottom_of_rectangle"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#E4D4E4"
+        app:layout_constraintTop_toBottomOf="@+id/myRectangleView"
+        app:layout_constraintEnd_toEndOf="@+id/myRectangleView"
+        app:layout_constraintStart_toStartOf="@+id/black_line_at_the_left_of_rectangle" />
+
+    <View
+        android:id="@+id/white_line_at_the_bottom_of_rectangle"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#FEF5FF"
+        app:layout_constraintTop_toBottomOf="@+id/grey_line_at_the_left_of_rectangle"
+        app:layout_constraintEnd_toEndOf="@+id/white_line_at_the_right_of_rectangle"
+        app:layout_constraintStart_toStartOf="@+id/grey_line_at_the_left_of_rectangle" />
+
+    <View
+        android:id="@+id/pink_line_at_the_right_of_rectangle"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:background="#E4D4E4"
+        app:layout_constraintTop_toTopOf="@+id/black_line_at_the_top_of_rectangle"
+        app:layout_constraintEnd_toEndOf="@+id/myRectangleView"
+        app:layout_constraintStart_toEndOf="@+id/myRectangleView"
+        app:layout_constraintBottom_toBottomOf="@+id/pink_line_at_the_bottom_of_rectangle"/>
+
+    <View
+        android:id="@+id/white_line_at_the_right_of_rectangle"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:background="#FEF5FF"
+        app:layout_constraintTop_toTopOf="@+id/grey_line_at_the_top_of_rectangle"
+        app:layout_constraintStart_toEndOf="@+id/grey_line_at_the_top_of_rectangle"
+        app:layout_constraintBottom_toBottomOf="@+id/pink_line_at_the_bottom_of_rectangle"/>
+
+
+    <View
+        android:id="@+id/myRectangleView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin = "2dp"
+        android:background="@drawable/rectangle_meal_info"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
