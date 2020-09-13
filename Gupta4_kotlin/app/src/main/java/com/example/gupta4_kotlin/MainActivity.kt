@@ -1,8 +1,12 @@
 package com.example.gupta4_kotlin
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.view.WindowManager
+import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.*
@@ -11,7 +15,7 @@ import org.xmlpull.v1.XmlPullParserFactory
 import java.io.IOException
 import java.io.StringReader
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
 
     var serviceUrl: String = "https://open.neis.go.kr/hub/mealServiceDietInfo"
     var serviceKey: String = "ce674eea5a53470680157d24c26d07a4"
@@ -26,6 +30,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        button_upper.setOnClickListener {
+            val popup = PopupMenu(this@MainActivity, it)
+            popup.setOnMenuItemClickListener(this@MainActivity)
+            popup.inflate(R.menu.main)
+            popup.show()
+        }
 
         calendarView.setOnDateChangeListener { calendarView, i, i1, i2 ->
 
@@ -143,6 +153,30 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onMenuItemClick(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.menu_mealInfo ->  {
+                Toast.makeText(this@MainActivity, "급식메뉴!", Toast.LENGTH_SHORT).show()
+                return true
+            }
+
+            R.id.menu_board ->  {
+                Toast.makeText(this@MainActivity, "게시판!!", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, CommunityActivity::class.java)
+                startActivity(intent)
+
+                return true
+            }
+
+            R.id.menu_myPage ->  {
+                Toast.makeText(this@MainActivity, "마이 페이지!", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, MySettingActivity::class.java)
+                startActivity(intent)
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item!!)
+    }
 
 }
 

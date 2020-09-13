@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".MainActivity">
+    tools:context=".MySettingActivity">
 
     <include
         android:id="@+id/default_lines"
@@ -60,7 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
-        android:text="급식메뉴"
+        android:text="내 페이지"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/button_upper"
         app:layout_constraintStart_toStartOf="@+id/button_upper"
@@ -93,26 +93,6 @@
         app:layout_constraintEnd_toEndOf="@+id/black_line_at_the_bottom_of_menu_button"
         app:layout_constraintStart_toStartOf="@+id/black_line_at_the_bottom_of_menu_button" />
 
-    <include
-        android:id="@+id/calendar_box"
-        layout="@layout/content_rectangle"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="8dp"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:layout_constraintBottom_toBottomOf="@+id/guideline4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/guideline3" />
-
-    <CalendarView
-        android:id="@+id/calendarView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="1dp"
-        app:layout_constraintTop_toTopOf="@+id/calendar_box"
-        app:layout_constraintEnd_toEndOf="@+id/calendar_box"
-        app:layout_constraintStart_toStartOf="@+id/calendar_box"
-        app:layout_constraintBottom_toBottomOf="@+id/calendar_box" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
@@ -121,85 +101,67 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.72" />
 
-    <include
-        android:id="@+id/button1"
-        layout="@layout/button_template_unpressed"
-        android:layout_width="66dp"
-        android:layout_height="28dp"
-        android:layout_margin="30dp"
-        android:background="@color/colorPrimary"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:layout_constraintBottom_toBottomOf="@+id/guideline4"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <include
-        android:id="@+id/button2"
-        layout="@layout/button_template_pressed"
-        android:layout_width="66dp"
-        android:layout_height="28dp"
-        android:layout_margin="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/button1"
-        app:layout_constraintStart_toStartOf="@+id/button1"
-        app:layout_constraintEnd_toEndOf="@+id/button1" />
-
-
-
-    <include
-        android:id="@+id/meal_info_box"
-        layout="@layout/content_rectangle"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="8dp"
-        app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.53" />
+        app:layout_constraintGuide_begin="176dp" />
 
-    <ScrollView
-        android:id="@+id/scrollView2"
+    <include
+        android:id="@+id/my_page_box"
+        layout="@layout/my_page_lines"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="15dp"
-        app:layout_constraintTop_toTopOf="@+id/meal_info_box"
-        app:layout_constraintBottom_toBottomOf="@+id/meal_info_box"
-        app:layout_constraintEnd_toEndOf="@+id/meal_info_box"
-        app:layout_constraintStart_toStartOf="@+id/meal_info_box" >
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintTop_toTopOf="@+id/guideline4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="오늘 날짜" />
 
-            <TextView
-                android:id="@+id/schoolName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="학교 이름" />
+    <include
+        android:id="@+id/setting_tab"
+        layout="@layout/my_page_setting_tab"
+        android:layout_width="120dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/guideline4"
+        app:layout_constraintStart_toEndOf="@+id/setting_tab2" />
 
-            <TextView
-                android:id="@+id/mealInfo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="급식 정보" />
 
-        </LinearLayout>
+    <include
+        android:id="@+id/setting_tab2"
+        layout="@layout/my_page_setting_tab2"
+        android:layout_width="120dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/my_page_box" />
 
-    </ScrollView>
 
+    <View
+        android:id="@+id/white_line_at_the_top_of_my_page_box"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/guideline4"
+        app:layout_constraintEnd_toStartOf="@+id/setting_tab"
+        app:layout_constraintStart_toStartOf="@+id/my_page_box" />
+
+    <View
+        android:id="@+id/white_line_at_the_top_of_my_page_box2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/guideline4"
+        app:layout_constraintEnd_toEndOf="@+id/my_page_box"
+        app:layout_constraintStart_toEndOf="@+id/setting_tab" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
