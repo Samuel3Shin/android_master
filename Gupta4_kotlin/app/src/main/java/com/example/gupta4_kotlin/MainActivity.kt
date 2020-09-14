@@ -2,9 +2,7 @@ package com.example.gupta4_kotlin
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
-import android.view.WindowManager
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -30,7 +28,7 @@ class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        button_upper.setOnClickListener {
+        buttonUpper.setOnClickListener {
             val popup = PopupMenu(this@MainActivity, it)
             popup.setOnMenuItemClickListener(this@MainActivity)
             popup.inflate(R.menu.main)
@@ -161,7 +159,7 @@ class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
             }
 
             R.id.menu_board ->  {
-                Toast.makeText(this@MainActivity, "게시판!!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "게시판!", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, CommunityActivity::class.java)
                 startActivity(intent)
 

@@ -31,7 +31,7 @@
         android:layout_height="1dp"
         android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/pink_line_at_the_top_of_rectangle"
-        app:layout_constraintEnd_toEndOf="@+id/pink_line_at_the_right_of_rectangle"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/pink_line_at_the_left_of_rectangle" />
 
     <View

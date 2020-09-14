@@ -34,7 +34,7 @@
 
 
     <ImageButton
-        android:id="@+id/back_button"
+        android:id="@+id/backButton"
         style="@android:style/Widget.DeviceDefault.ImageButton"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
@@ -124,9 +124,10 @@
         android:layout_marginEnd="10dp"
         android:text="게시판"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/button_upper"
-        app:layout_constraintEnd_toStartOf="@+id/button_upper"
-        app:layout_constraintTop_toTopOf="@+id/button_upper" />
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonUpper"
+        app:layout_constraintEnd_toStartOf="@+id/buttonUpper"
+        app:layout_constraintTop_toTopOf="@+id/buttonUpper" />
 
     <TextView
         android:id="@+id/textView3"
@@ -135,6 +136,7 @@
         android:layout_marginEnd="10dp"
         android:text="닉네임"
         android:textSize="20sp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/nickname_box"
         app:layout_constraintEnd_toStartOf="@+id/nickname_box"
         app:layout_constraintTop_toTopOf="@+id/nickname_box" />
@@ -146,12 +148,13 @@
         android:layout_marginEnd="10dp"
         android:text="제목"
         android:textSize="20sp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/title_box"
         app:layout_constraintEnd_toStartOf="@+id/title_box"
         app:layout_constraintTop_toTopOf="@+id/title_box" />
 
     <include
-        android:id="@+id/button_upper"
+        android:id="@+id/buttonUpper"
         layout="@layout/content_rectangle"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -170,9 +173,9 @@
         android:layout_width="0dp"
         android:layout_margin="2dp"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintBottom_toBottomOf="@+id/button_upper"
-        app:layout_constraintEnd_toEndOf="@+id/button_upper"
-        app:layout_constraintTop_toTopOf="@+id/button_upper" />
+        app:layout_constraintBottom_toBottomOf="@+id/buttonUpper"
+        app:layout_constraintEnd_toEndOf="@+id/buttonUpper"
+        app:layout_constraintTop_toTopOf="@+id/buttonUpper" />
 
     <include
         android:id="@+id/nickname_box"
@@ -184,7 +187,7 @@
         app:layout_constraintBottom_toTopOf="@+id/title_box"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_center"
-        app:layout_constraintTop_toBottomOf="@+id/button_upper" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonUpper" />
 
     <include
         android:id="@+id/title_box"
@@ -210,7 +213,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:ems="10"
-        android:hint="따뜻한 글을 써주세요"
+        android:hint="글을 써주세요"
         android:inputType="textMultiLine"
         android:padding="4dp"
         android:layout_margin="8dp"

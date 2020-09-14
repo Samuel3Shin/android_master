@@ -32,7 +32,7 @@
         app:layout_constraintGuide_percent="0.1" />
 
     <include
-        android:id="@+id/button_upper"
+        android:id="@+id/buttonUpper"
         layout="@layout/content_rectangle"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -50,9 +50,9 @@
         android:layout_width="0dp"
         android:layout_margin="2dp"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintBottom_toBottomOf="@+id/button_upper"
-        app:layout_constraintEnd_toEndOf="@+id/button_upper"
-        app:layout_constraintTop_toTopOf="@+id/button_upper" />
+        app:layout_constraintBottom_toBottomOf="@+id/buttonUpper"
+        app:layout_constraintEnd_toEndOf="@+id/buttonUpper"
+        app:layout_constraintTop_toTopOf="@+id/buttonUpper" />
 
 
     <TextView
@@ -62,8 +62,8 @@
         android:layout_marginStart="6dp"
         android:text="내 페이지"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/button_upper"
-        app:layout_constraintStart_toStartOf="@+id/button_upper"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonUpper"
+        app:layout_constraintStart_toStartOf="@+id/buttonUpper"
         app:layout_constraintTop_toTopOf="@+id/guideline1" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -125,18 +125,31 @@
 
 
     <include
-        android:id="@+id/setting_tab"
+        android:id="@+id/settingTab"
         layout="@layout/my_page_setting_tab"
         android:layout_width="120dp"
         android:layout_height="32dp"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
         app:layout_constraintBottom_toBottomOf="@+id/guideline4"
-        app:layout_constraintStart_toEndOf="@+id/setting_tab2" />
+        app:layout_constraintStart_toEndOf="@+id/myPostsTab" />
+
+
+    <TextView
+        android:id="@+id/settingTabTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="설정"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="@+id/settingTab"
+        app:layout_constraintBottom_toBottomOf="@+id/settingTab"
+        app:layout_constraintStart_toStartOf="@+id/settingTab"
+        app:layout_constraintEnd_toEndOf="@+id/settingTab" />
+
 
 
     <include
-        android:id="@+id/setting_tab2"
+        android:id="@+id/myPostsTab"
         layout="@layout/my_page_setting_tab2"
         android:layout_width="120dp"
         android:layout_height="30dp"
@@ -145,23 +158,35 @@
         app:layout_constraintBottom_toBottomOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="@+id/my_page_box" />
 
+    <TextView
+        android:id="@+id/myPostsTabTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="내가 쓴 글"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="@+id/myPostsTab"
+        app:layout_constraintBottom_toBottomOf="@+id/myPostsTab"
+        app:layout_constraintStart_toStartOf="@+id/myPostsTab"
+        app:layout_constraintEnd_toEndOf="@+id/myPostsTab" />
+
 
     <View
         android:id="@+id/white_line_at_the_top_of_my_page_box"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/guideline4"
-        app:layout_constraintEnd_toStartOf="@+id/setting_tab"
+        app:layout_constraintTop_toBottomOf="@+id/guideline4"
+        app:layout_constraintEnd_toStartOf="@+id/settingTab"
         app:layout_constraintStart_toStartOf="@+id/my_page_box" />
 
     <View
         android:id="@+id/white_line_at_the_top_of_my_page_box2"
         android:layout_width="0dp"
         android:layout_height="1dp"
+        android:layout_marginEnd="1dp"
         android:background="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/guideline4"
         app:layout_constraintEnd_toEndOf="@+id/my_page_box"
-        app:layout_constraintStart_toEndOf="@+id/setting_tab" />
+        app:layout_constraintStart_toEndOf="@+id/settingTab" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

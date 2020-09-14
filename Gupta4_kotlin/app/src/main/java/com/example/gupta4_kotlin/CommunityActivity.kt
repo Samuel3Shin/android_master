@@ -5,21 +5,34 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_community.*
+import kotlinx.android.synthetic.main.activity_community.buttonUpper
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.gupsik_post.view.*
 
-class CommunityActivity : AppCompatActivity() {
+class CommunityActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
     val posts: MutableList<Post> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_community)
+
+        buttonUpper.setOnClickListener {
+            val popup = PopupMenu(this@CommunityActivity, it)
+            popup.setOnMenuItemClickListener(this@CommunityActivity)
+            popup.inflate(R.menu.main)
+            popup.show()
+        }
+
 
         val layoutManager = LinearLayoutManager(this@CommunityActivity)
 
@@ -159,5 +172,29 @@ class CommunityActivity : AppCompatActivity() {
             }
 
         }
+    }
+
+    override fun onMenuItemClick(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.menu_mealInfo ->  {
+                Toast.makeText(this@CommunityActivity, "급식메뉴!", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                return true
+            }
+
+            R.id.menu_board ->  {
+                Toast.makeText(this@CommunityActivity, "게시판!", Toast.LENGTH_SHORT).show()
+                return true
+            }
+
+            R.id.menu_myPage ->  {
+                Toast.makeText(this@CommunityActivity, "마이 페이지!", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, MySettingActivity::class.java)
+                startActivity(intent)
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item!!)
     }
 }

@@ -7,9 +7,7 @@ import android.provider.Settings
 import android.util.Log
 import android.view.*
 import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -112,7 +110,7 @@ class DetailActivity : AppCompatActivity() {
 
         })
 
-        back_button.setOnClickListener {
+        backButton.setOnClickListener {
             finish()
         }
 

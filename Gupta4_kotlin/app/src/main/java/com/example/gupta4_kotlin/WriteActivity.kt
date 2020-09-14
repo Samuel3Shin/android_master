@@ -20,6 +20,10 @@ class WriteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_write)
 
+        backButton.setOnClickListener {
+            finish()
+        }
+
         intent.getStringExtra("mode")?.let {
             mode = intent.getStringExtra("mode")!!
             postId = intent.getStringExtra("postId")!!
