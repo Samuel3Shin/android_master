@@ -189,4 +189,166 @@
         app:layout_constraintEnd_toEndOf="@+id/my_page_box"
         app:layout_constraintStart_toEndOf="@+id/settingTab" />
 
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vertical_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.08" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vertical_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.92" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_title_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.16" />
+
+
+    <include
+        android:id="@+id/mySchoolInfoBox"
+        layout="@layout/my_page_info_box"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        app:layout_constraintTop_toTopOf="@+id/my_page_box"
+        app:layout_constraintBottom_toTopOf="@+id/myAllergyInfoBox"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_1"
+        app:layout_constraintEnd_toEndOf="@+id/guideline_vertical_2"  />
+
+    <View
+        android:id="@+id/grey_line1_for_my_school_info_box"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginEnd="4dp"
+        android:background="@color/grey"
+        app:layout_constraintEnd_toStartOf="@+id/mySchoolTextView"
+        app:layout_constraintStart_toStartOf="@+id/mySchoolInfoBox"
+        app:layout_constraintTop_toTopOf="@+id/mySchoolInfoBox" />
+
+    <TextView
+        android:id="@+id/mySchoolInfoTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="이화여자대학교 사범대학 부속 이화 금란 고등학교"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/mySchoolInfoBox"
+        app:layout_constraintTop_toTopOf="@+id/mySchoolInfoBox" />
+
+
+    <TextView
+        android:id="@+id/mySchoolTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="내 학교"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/mySchoolInfoBox"
+        app:layout_constraintStart_toStartOf="@+id/guideline_title_start"
+        app:layout_constraintTop_toTopOf="@+id/mySchoolInfoBox" />
+
+    <View
+        android:id="@+id/grey_line2_for_my_school_info_box"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="4dp"
+        android:background="@color/grey"
+        app:layout_constraintEnd_toEndOf="@+id/mySchoolInfoBox"
+        app:layout_constraintStart_toEndOf="@+id/mySchoolTextView"
+        app:layout_constraintTop_toTopOf="@+id/mySchoolInfoBox" />
+
+
+
+    <include
+        android:id="@+id/mySchoolInfoEditButton"
+        layout="@layout/button_template_unpressed"
+        android:layout_width="66dp"
+        android:layout_height="28dp"
+        android:layout_marginBottom="16dp"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/mySchoolInfoBox"
+        app:layout_constraintEnd_toEndOf="@+id/mySchoolInfoBox"  />
+
+    <TextView
+        android:id="@+id/mySchoolInfoEditButtonTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="수정"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="@+id/mySchoolInfoEditButton"
+        app:layout_constraintBottom_toBottomOf="@+id/mySchoolInfoEditButton"
+        app:layout_constraintStart_toStartOf="@+id/mySchoolInfoEditButton"
+        app:layout_constraintEnd_toEndOf="@+id/mySchoolInfoEditButton" />
+
+
+    <include
+        android:id="@+id/myAllergyInfoBox"
+        layout="@layout/my_page_info_box"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        app:layout_constraintTop_toBottomOf="@+id/mySchoolInfoBox"
+        app:layout_constraintBottom_toBottomOf="@+id/my_page_box"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_1"
+        app:layout_constraintEnd_toEndOf="@+id/guideline_vertical_2"  />
+
+    <View
+        android:id="@+id/grey_line1_for_my_allergy_info_box"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginEnd="4dp"
+        android:background="@color/grey"
+        app:layout_constraintEnd_toStartOf="@+id/myAllergyTextView"
+        app:layout_constraintStart_toStartOf="@+id/myAllergyInfoBox"
+        app:layout_constraintTop_toTopOf="@+id/myAllergyInfoBox" />
+
+
+    <TextView
+        android:id="@+id/myAllergyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="알러지"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/myAllergyInfoBox"
+        app:layout_constraintStart_toStartOf="@+id/guideline_title_start"
+        app:layout_constraintTop_toTopOf="@+id/myAllergyInfoBox" />
+
+    <View
+        android:id="@+id/grey_line2_for_my_allergy_info_box"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="4dp"
+        android:background="@color/grey"
+        app:layout_constraintEnd_toEndOf="@+id/myAllergyInfoBox"
+        app:layout_constraintStart_toEndOf="@+id/myAllergyTextView"
+        app:layout_constraintTop_toTopOf="@+id/myAllergyInfoBox" />
+
+    <include
+        android:id="@+id/myAllergyInfoEditButton"
+        layout="@layout/button_template_unpressed"
+        android:layout_width="66dp"
+        android:layout_height="28dp"
+        android:layout_marginBottom="16dp"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/myAllergyInfoBox"
+        app:layout_constraintEnd_toEndOf="@+id/myAllergyInfoBox"  />
+
+    <TextView
+        android:id="@+id/myAllergyInfoEditButtonTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="수정"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="@+id/myAllergyInfoEditButton"
+        app:layout_constraintBottom_toBottomOf="@+id/myAllergyInfoEditButton"
+        app:layout_constraintStart_toStartOf="@+id/myAllergyInfoEditButton"
+        app:layout_constraintEnd_toEndOf="@+id/myAllergyInfoEditButton" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

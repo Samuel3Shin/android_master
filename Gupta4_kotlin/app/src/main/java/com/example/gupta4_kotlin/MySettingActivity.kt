@@ -7,6 +7,8 @@ import android.view.MenuItem
 import android.widget.PopupMenu
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_community.*
+import kotlinx.android.synthetic.main.activity_community.buttonUpper
+import kotlinx.android.synthetic.main.activity_my_setting.*
 
 class MySettingActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,6 +20,12 @@ class MySettingActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener
             popup.setOnMenuItemClickListener(this@MySettingActivity)
             popup.inflate(R.menu.main)
             popup.show()
+        }
+
+        mySchoolInfoEditButton.setOnClickListener {
+            Toast.makeText(this@MySettingActivity, "학교 수정!", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, SchoolSearchActivity::class.java)
+            startActivity(intent)
         }
     }
 

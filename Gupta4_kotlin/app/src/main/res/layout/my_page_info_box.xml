@@ -15,15 +15,6 @@
         app:layout_constraintTop_toTopOf="@+id/myRectangleView" />
 
     <View
-        android:id="@+id/grey_line_at_the_top_of_rectangle"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="@color/grey"
-        app:layout_constraintBottom_toTopOf="@+id/myRectangleView"
-        app:layout_constraintEnd_toEndOf="@+id/grey_line_at_the_right_of_rectangle"
-        app:layout_constraintStart_toStartOf="@+id/grey_line_at_the_left_of_rectangle" />
-
-    <View
         android:id="@+id/grey_line_at_the_bottom_of_rectangle"
         android:layout_width="0dp"
         android:layout_height="1dp"
@@ -38,18 +29,18 @@
         android:layout_width="1dp"
         android:layout_height="0dp"
         android:background="@color/grey"
-        app:layout_constraintStart_toEndOf="@id/grey_line_at_the_top_of_rectangle"
-        app:layout_constraintEnd_toEndOf="@+id/myRectangleView"
+        app:layout_constraintStart_toEndOf="@+id/myRectangleView"
         app:layout_constraintTop_toTopOf="@+id/myRectangleView"
-        app:layout_constraintBottom_toBottomOf="@+id/grey_line_at_the_bottom_of_rectangle"/>
-
+        app:layout_constraintBottom_toBottomOf="@+id/grey_line_at_the_bottom_of_rectangle"  />
 
     <View
         android:id="@+id/myRectangleView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/white"
-        android:layout_margin="1dp"
+        android:background="@color/colorPrimary"
+        android:layout_marginBottom="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

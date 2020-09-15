@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MySettingActivity"></activity>
+        <activity android:name=".SchoolSearchActivity"></activity>
+        <activity android:name=".MySettingActivity" />
         <activity android:name=".SplashScrrenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +25,7 @@
         <activity android:name=".CommunityActivity" />
         <activity android:name=".WriteActivity" />
         <activity android:name=".DetailActivity" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

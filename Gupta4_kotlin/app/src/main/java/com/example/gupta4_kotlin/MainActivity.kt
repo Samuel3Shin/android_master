@@ -1,7 +1,9 @@
 package com.example.gupta4_kotlin
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.widget.PopupMenu
 import android.widget.Toast
@@ -18,8 +20,11 @@ class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
     var serviceUrl: String = "https://open.neis.go.kr/hub/mealServiceDietInfo"
     var serviceKey: String = "ce674eea5a53470680157d24c26d07a4"
 
+    val preference by lazy {getSharedPreferences("mainActivity", Context.MODE_PRIVATE)}
+
     var district_code = "J10"
     var school_code = "7530184"
+
 
     var strUrl = ""
     var result = ""
@@ -27,6 +32,13 @@ class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // shared preference에서 교육청 코드와 학교 코드 불러오는데, 만약에 없으면 그냥 위의 default값(안산동산고등학교 코드) 내뱉음.
+        district_code = preference.getString("districtCode", district_code).toString()
+        school_code = preference.getString("schoolCode", school_code).toString()
+
+        Log.d("tkandpf", district_code)
+        Log.d("tkandpf", school_code)
 
         buttonUpper.setOnClickListener {
             val popup = PopupMenu(this@MainActivity, it)

@@ -55,6 +55,9 @@
         app:layout_constraintTop_toTopOf="@+id/buttonUpper" />
 
 
+    <!--    visibility 로 누른 거랑 안 누른 걸 구분하자  -->
+
+
     <TextView
         android:id="@+id/menuTextView"
         android:layout_width="wrap_content"
